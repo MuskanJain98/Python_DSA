@@ -1,0 +1,31 @@
+"""
+Write a function that takes in a non-empty array of integers that are sorted in ascending order and returns a new array of the same length 
+with the squares of the original integers also sorted in ascending order. 
+
+"""
+def sortedSquaredArray(array):
+	min=0
+	max=len(array)-1
+  
+  #initializing a list of 0s equal to the length of inpit array, this is where the sorted arrays will be filled. 
+	
+  sortedarray=[0 for i in array]
+	
+  #input array could contain negative integers in which case, sqaure of the first value of input array could be greater than sqaure of last value
+  #thus we can traverse the array in reverse 
+  for i in reversed(range(len(array))):
+		small=array[min]
+    #here min will start from the last element and vice versa for max
+		large=array[max]
+		if abs(small)>abs(large):
+    #if absolute value of last element of input array> first element, then sorted list of squares will have it as the last index
+			sortedarray[i]=small*small
+			min+=1
+		else:	
+			sortedarray[i]=large*large
+			max-=1
+    #hence we can fill the sorted squares array from left to right. 
+	return sortedarray
+ 
+ array=[-7, -2, 0, 1, 4, 6]
+ sortedSquaredArray(array)
